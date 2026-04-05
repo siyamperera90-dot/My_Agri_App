@@ -10,7 +10,7 @@ MODEL_URL = "https://github.com/siyamperera90-dot/My_Agri_App/releases/download/
 
 @st.cache_resource
 def load_model():
-    model_path = 'crop_disease_model.h5'
+    model_path = 'crop_disease_model.keras'
     
     # සර්වර් එකේ ෆයිල් එක නැත්නම් අර ලින්ක් එකෙන් බාගන්නවා
     if not os.path.exists(model_path):
