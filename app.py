@@ -2,10 +2,22 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+import urllib.request
+import os
+
+# මෙතනට ඔයාගේ Release ලින්ක් එක දාන්න (උද්ධෘත ලකුණු ඇතුළේ)
+MODEL_URL = "sha256:cdcc9ddc34ef556fd0af7a688426f1bdf702a896afea1c3e9dfd76e882646a80"
 
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model('crop_disease_model.h5')
+    model_path = 'crop_disease_model.h5'
+    
+    # සර්වර් එකේ ෆයිල් එක නැත්නම් අර ලින්ක් එකෙන් බාගන්නවා
+    if not os.path.exists(model_path):
+        st.info("AI මොළය භාගත කරමින් පවතී... (මෙයට විනාඩියක් පමණ ගත විය හැක)")
+        urllib.request.urlretrieve(MODEL_URL, model_path)
+        
+    model = tf.keras.models.load_model(model_path)
     return model
 
 model = load_model()
@@ -56,4 +68,4 @@ if uploaded_file is not None:
         st.success(f"**හඳුනාගත් රෝගය:** {predicted_disease}")
         st.info(f"**නිවැරදි වීමේ සම්භාවිතාව:** {confidence:.2f}%")
     else:
-        st.warning("⚠️ මට මේ ඡායාරූපය හරියටම හඳුනාගන්න අපහසුයි. කරුණාකර රෝගය සහිත පත්‍රයේ වඩාත් පැහැදිලි ඡායාරූපයක් ඇතුළත් කරන්න, නැතහොත් මෙය පද්ධතියේ නොමැති ශාකයක් විය හැක.")
+        st.warning("⚠️ මට මේ ඡායාරූපය හරියටම හඳුනාගන්න අපහසුයි. කරුණාකර රෝගය සහිත පත්‍රයේ වඩාත් පැහැදිලි ඡායාරූපයක් ඇතුළත් කරන්න.")
