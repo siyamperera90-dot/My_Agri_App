@@ -6,7 +6,7 @@ import urllib.request
 import os
 
 # මෙතනට ඔයාගේ Release ලින්ක් එක දාන්න (උද්ධෘත ලකුණු ඇතුළේ)
-MODEL_URL = "https://github.com/siyamperera90-dot/My_Agri_App/releases/download/v1.0/crop_disease_model.h5"
+MODEL_URL = "https://github.com/siyamperera90-dot/My_Agri_App/releases/download/v2.0/crop_disease_model.keras"
 
 @st.cache_resource
 def load_model():
