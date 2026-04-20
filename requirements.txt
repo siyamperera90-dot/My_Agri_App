@@ -1,4 +1,3 @@
-streamlit
-tensorflow-cpu
-Pillow
-numpy<2.0.0
+tensorflow==2.13.0
+# or if you used standalone keras:
+keras==2.13.0
