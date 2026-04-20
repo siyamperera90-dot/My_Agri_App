@@ -10,8 +10,9 @@ MODEL_URL = "https://github.com/siyamperera90-dot/My_Agri_App/releases/download/
 
 @st.cache_resource
 def load_model():
-    model_path = 'final_crop_model.keras'
-    
+    # compile=False dammahama version mismatch errors adu wenawa
+    model = tf.keras.models.load_model('crop_disease_model.h5', compile=False)
+    return model
     # සර්වර් එකේ ෆයිල් එක නැත්නම් අර ලින්ක් එකෙන් බාගන්නවා
     if not os.path.exists(model_path):
         st.info("AI මොළය භාගත කරමින් පවතී... (මෙයට විනාඩියක් පමණ ගත විය හැක)")
